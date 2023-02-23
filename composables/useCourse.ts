@@ -1,25 +1,26 @@
 import courseData from './courseData';
 
 type Lesson = {
-  title: string,
-  slug: string,
-  number: number,
-  downloadUrl: string,
-  videoId: number,
-  text: string
-  sourceUrl?: string
+  title: string;
+  slug: string;
+  number: number;
+  downloadUrl: string;
+  videoId: number;
+  text: string;
+  sourceUrl?: string;
+  path: string;
 }
 
 type Chapter = {
-  title: string,
-  slug: string,
-  number: number,
-  lessons: Lesson[]
+  title: string;
+  slug: string;
+  number: number;
+  lessons: Lesson[];
 }
 
 type Course = {
-  title: string,
-  chapters: Chapter[]
+  title: string;
+  chapters: Chapter[];
 }
 
 export const useCourse = (): Course => {

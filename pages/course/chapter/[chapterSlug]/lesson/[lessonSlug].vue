@@ -32,11 +32,12 @@
 <script setup>
 const course = useCourse();
 const route = useRoute();
+const { chapterSlug, lessonSlug } = route.params;
+const lesson = await useLesson(chapterSlug, lessonSlug);
 
 definePageMeta({
   middleware: [
     function ({ params }, from) {
-      // Need to get it again because it is out of scope
       const course = useCourse();
 
       const chapter = course.chapters.find(
@@ -75,16 +76,9 @@ const chapter = computed(() => {
   );
 });
 
-const lesson = computed(() => {
-  return chapter.value.lessons.find(
-    (lesson) => lesson.slug === route.params.lessonSlug
-  );
-});
-
 const title = computed(() => {
   return `${lesson.value.title} - ${course.title}`;
 });
-
 useHead({
   title,
 });
@@ -110,9 +104,5 @@ const toggleComplete = () => {
 
   progress.value[chapter.value.number - 1][lesson.value.number - 1] =
     !isLessonComplete.value;
-};
-
-const throwTest = () => {
-  throw createError("Could not update");
 };
 </script>

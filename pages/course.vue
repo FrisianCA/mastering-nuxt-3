@@ -61,7 +61,6 @@
 
 <script setup>
 const course = await useCourse();
-
 const firstLesson = await useFirstLesson();
 
 const resetError = async (error) => {
